@@ -1,0 +1,57 @@
+<div class="body">
+  <div class="container">
+    <h1>Products</h1>
+    <hr>
+    <div class="control">
+      <div *ngIf="edit">
+        <h3>Update Product</h3>
+      </div>
+      <div *ngIf="!edit">
+          <h3>New Product</h3>
+      </div>
+      <label for="">Product Name</label>
+      <input type="text" [(ngModel)]="productSelected.prod_name" placeholder="Product Name">
+      <label for="">Product Description</label>
+      <input type="text" [(ngModel)]="productSelected.prod_desc" placeholder="Product Description">
+      <label for="">Price</label>
+      <input min="0" type="number" [(ngModel)]="productSelected.prod_price" placeholder="Price">
+      <div *ngIf="edit">
+          <input type="submit" value="Cancel " (click)="cancelEdit()">
+          <input type="submit" value="Update" (click)="updateProduct()">
+      </div>
+      <div *ngIf="!edit">
+          <input type="submit" value="Save" (click)="addProduct()">
+      </div>
+    </div>
+    <div class="table_container">
+        <h3>Table of products</h3>
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <td>{{product._id}}</td>
+                    <td>{{product.prod_name}}</td>
+                    <td>{{product.prod_desc}}</td>
+                    <td>{{product.prod_price}}</td>
+                    <td>{{product.updated_at}}</td>
+                    <td>
+                        <input type="submit" value="Edit" (click)="selectProduct(product._id)">
+                    </td>
+                    <td>
+                        <input type="submit" value="Delete" (click)="deleteProduct(product._id)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>  
+    <hr>
+  </div>
+</div>
